@@ -95,6 +95,15 @@ public class HomeController : Controller
             return Redirect("/");
         }
         ViewBag.AllWeddings = _context.Weddings.Include(i => i.Guests).ThenInclude(i => i.User).ToList();
+        
+        // Will delete the wedding if the date has passed
+        foreach(Wedding w in ViewBag.AllWeddings)
+        {
+            if (w.Date.Subtract(DateTime.Now).Hours < 0)
+            {
+                return Redirect($"delete/{w.WeddingId}");
+            }
+        }
         // 
         return View();
     }
