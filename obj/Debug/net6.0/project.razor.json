@@ -16348,6 +16348,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\logan\\OneDrive\\Documents\\dojo_assignments\\C#\\ORMs\\WeddingPlanner\\Views\\Home\\ShowWedding.cshtml",
+      "TargetPath": "Views\\Home\\ShowWedding.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\logan\\OneDrive\\Documents\\dojo_assignments\\C#\\ORMs\\WeddingPlanner\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"

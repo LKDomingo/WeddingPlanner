@@ -95,7 +95,7 @@ public class HomeController : Controller
             return Redirect("/");
         }
         ViewBag.AllWeddings = _context.Weddings.Include(i => i.Guests).ThenInclude(i => i.User).ToList();
-        
+
         // Will delete the wedding if the date has passed
         foreach(Wedding w in ViewBag.AllWeddings)
         {
@@ -157,6 +157,13 @@ public class HomeController : Controller
             return View("Wedding");
         }
         
+    }
+    //////////////////SHOW WEDDING PAGE////////////////
+    [HttpGet("wedding/{WeddingId}")]
+    public IActionResult ShowWedding(int WeddingId)
+    {
+        Wedding? Wedding = _context.Weddings.Include(i => i.Guests).ThenInclude(j => j.User).FirstOrDefault(a => a.WeddingId == WeddingId);
+        return View("ShowWedding", Wedding);
     }
     ///////////////////RSVP TO WEDDING/////////////////
     [HttpGet("RSVP/{WeddingId}")]

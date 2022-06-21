@@ -1,0 +1,15 @@
+@model Wedding
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="display-4">@Model.Wedder1 & @Model.Wedder2's Wedding</h1>
+    <div>
+        <a class="mx-2" href="/Dashboard">Dashboard</a>
+        <a class="mx-2" href="/">Log Out</a>
+    </div>
+</div>
+<h4 class="display-6">Date: @Model.Date.ToString("MMMM dd, yyyy")</h4>
+<h4 class="display-6">Guests:</h4>
+@foreach(var g in @Model.Guests)
+{
+    <h4>@g.User.FirstName @g.User.LastName</h4>
+}

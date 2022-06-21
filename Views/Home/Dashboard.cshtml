@@ -16,9 +16,9 @@
             @foreach (Wedding w in @ViewBag.AllWeddings)
             {
                 <tr>
-                    <td>@w.Wedder1 & @w.Wedder2</td>
+                    <td><a href="/wedding/@w.WeddingId">@w.Wedder1 & @w.Wedder2</a></td>
                     <td>@w.Date.ToString("MMMM dd, yyyy")</td>
-                    <td class="text-danger">@{@w.Guests.Count()}</td>
+                    <td class="">@{@w.Guests.Count()}</td>
                     @{
                         if (w.CreatorId == @Context.Session.GetInt32("User"))
                         {
