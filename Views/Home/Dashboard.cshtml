@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="display-4">Welcome to the Wedding Planner</h1>
+    <a href="/">Log Out</a>
+</div>
+<div class="mt-4">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Wedding</th>
+                <th>Date</th>
+                <th>Guests</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Wedding w in @ViewBag.AllWeddings)
+            {
+                <tr>
+                    <td>@w.Wedder1 & @w.Wedder2</td>
+                    <td>@w.Date.ToString("MMMM dd, yyyy")</td>
+                    <td class="text-danger">@{@w.Guests.Count()}</td>
+                    @{
+                        if (w.CreatorId == @Context.Session.GetInt32("User"))
+                        {
+                            <td><a class="btn btn-danger" href="/delete/@w.WeddingId">Delete</a></td>
+                        }
+                        else
+                        {
+                            bool isAGuest = false;
+                            foreach (Association a in @w.Guests)
+                            {
+                                if (@a.UserId == @Context.Session.GetInt32("User"))
+                                {
+                                    isAGuest = true;
+                                }
+                            }
+                            if (isAGuest)
+                            {
+                                    <td><a class="btn btn-warning" href="/UN-RSVP/@w.WeddingId">UN-RSVP</a></td>
+                            }
+                            else 
+                            {
+                                    <td><a class="btn btn-success" href="/RSVP/@w.WeddingId">RSVP</a></td>
+                            }
+
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-primary" href="/wedding">New Wedding</a>
+    </div>
+</div>
